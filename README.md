@@ -43,7 +43,9 @@ Aplikasi ini terinspirasi dari pengamatan terhadap sistem peminjaman ruang di Ba
 
 ## 🛠️ Teknologi yang Digunakan (Opsional)
 
-> _(Tambahkan bagian ini jika kamu ingin mencantumkan stack teknologi yang dipakai, misalnya Laravel, Inertia.js, React, MySQL, dst.)_
+- Laravel
+- Bootstrap
+- MySql
 
 ---
 
@@ -53,14 +55,6 @@ Aplikasi ini sedang dalam tahap pengembangan. Rencana selanjutnya meliputi:
 
 - Implementasi sistem autentikasi multi-role (admin, partner, user)
 - Dashboard interaktif untuk partner dan admin
-- Integrasi pembayaran online
-- Sistem notifikasi berbasis email atau WhatsApp
-
----
-
-## 🤝 Kontribusi
-
-Jika kamu tertarik berkontribusi dalam proyek ini, silakan buat pull request atau hubungi pengembang melalui email.
 
 ---
 
