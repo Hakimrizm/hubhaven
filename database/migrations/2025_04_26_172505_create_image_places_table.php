@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('image_places', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('place_id');
-            $table->string('imahe_place_url');
+            $table->string('image_place_url');
             $table->timestamps();
 
             $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');

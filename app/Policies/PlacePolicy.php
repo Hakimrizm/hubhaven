@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Partner;
 use App\Models\Place;
 use App\Models\User;
 
@@ -13,6 +14,10 @@ class PlacePolicy
     public function __construct()
     {
         //
+    }
+
+    public function create(User $user) {
+        return $user->role == 'partner';
     }
 
     public function update(User $user, Place $place) {

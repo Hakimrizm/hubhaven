@@ -28,6 +28,14 @@
   </div>
 </div>
 
+<div class="row mt-2">
+@foreach ($place->imagePlace as $image)
+  <div class="col-md-4">
+    <img src="{{ asset('storage/' . $image->image_place_url) }}" alt="" width="100%">
+  </div>
+@endforeach
+</div>
+
 <div class="table-responsive mt-2">
   <table class="table align-middle">
     <tbody>
@@ -91,7 +99,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <a href="{{ url()->previous() }}" class="text-info"><< Back</a>
+    <a href="/dashboard/place" class="text-info"><< Back</a>
   </div>
 </div>
 

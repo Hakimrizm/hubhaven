@@ -9,7 +9,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-6">
-      <form action="/dashboard/place" method="POST">
+      <form action="/dashboard/place" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -18,6 +18,20 @@
           @error('place_name')
             <span class="text-danger d-inline-block mt-2">{{ $message }}</span>
           @enderror
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Upload Images</label>
+          <div id="image-inputs">
+            <div class="image-input-wrapper mb-2">
+              <input type="file" name="image_place_url[]" accept="image/*" class="form-control image-input @error('image_place_url') is-invalid @enderror">
+              <img class="preview-img mt-2" style="max-width: 150px; display: none;">
+            </div>
+          </div>
+          @error('image_place_url')
+            <span class="text-danger d-inline-block mt-2">{{ $message }}</span>
+          @enderror
+          <button type="button" class="btn btn-secondary mt-2" id="add-image-btn">+ Add Image</button>
         </div>
 
         <div class="mb-3">
@@ -89,4 +103,44 @@
       </form>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.getElementById('image-inputs');
+      const addBtn = document.getElementById('add-image-btn');
+
+      // Preview handler
+      function handlePreview(input) {
+        input.addEventListener('change', function (e) {
+          const file = this.files[0];
+          const preview = this.parentElement.querySelector('.preview-img');
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              preview.src = e.target.result;
+              preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      // Initial preview binding
+      const firstInput = container.querySelector('.image-input');
+      handlePreview(firstInput);
+
+      // Tambah input baru
+      addBtn.addEventListener('click', function () {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('image-input-wrapper', 'mb-2');
+        wrapper.innerHTML = `
+          <input type="file" name="image_place_url[]" accept="image/*" class="form-control image-input @error('image_place_url') is-invalid @enderror">
+          <img class="preview-img mt-2" style="max-width: 150px; display: none;">
+        `;
+        container.appendChild(wrapper);
+        const newInput = wrapper.querySelector('.image-input');
+        handlePreview(newInput);
+      });
+    });
+  </script>
 @endsection

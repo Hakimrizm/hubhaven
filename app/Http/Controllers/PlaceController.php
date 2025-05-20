@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImagePlace;
 use App\Models\Partner;
 use App\Models\Place;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 
@@ -46,8 +48,10 @@ class PlaceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Place $place)
     {
+        $this->authorize('create', $place);
+
         return view('dashboard.partner.place.create');
     }
 
@@ -56,9 +60,12 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Place::class);
+
         $partner_id = auth()->user()->partner->id;
 
         $request->validate([
+            'image_place_url.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'place_name' => 'required',
             'place_price_per_hour' => 'required|numeric',
             'place_open_time' => 'required|date_format:H:i',
@@ -81,6 +88,17 @@ class PlaceController extends Controller
             'place_description' => $request->place_description,
             'place_location_url' => $request->place_location_url
         ]);
+
+        if($request->hasFile('image_place_url')) {
+            foreach($request->file('image_place_url') as $image) {
+                $path = $image->store('image_place');
+
+                ImagePlace::create([
+                    'place_id' => $place->id,
+                    'image_place_url' => $path
+                ]);
+            }
+        }
 
         return redirect('/dashboard/place')->with([
             'success' => 'Place has been added',
@@ -116,9 +134,12 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        $this->authorize('update', $place);
+
         $partner_id = auth()->user()->partner->id;
 
         $request->validate([
+            'image_place_url.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'place_name' => 'required',
             'place_price_per_hour' => 'required|numeric',
             'place_open_time' => 'required|date_format:H:i',
@@ -143,11 +164,31 @@ class PlaceController extends Controller
             'place_description' => $request->place_description,
         ]);
 
+        if($request->hasFile('image_place_url')) {
+            foreach($request->file('image_place_url') as $image) {
+                $path = $image->store('image_place');
+
+                ImagePlace::create([
+                    'place_id' => $place->id,
+                    'image_place_url' => $path
+                ]);
+            }
+        }
+
         return redirect('/dashboard/place')->with([
             'success' => 'Place has been Updated',
             'place_id' => $place->id,
             'status' => 'Updated'
         ]);
+    }
+
+    public function deleteImage(ImagePlace $imagePlace)
+    {
+        $place = $imagePlace->place;
+        $this->authorize('update', $place);
+        Storage::delete($imagePlace->image_place_url);
+        $imagePlace->delete();
+        return response()->json(['message' => 'Image deleted']);
     }
 
     /**
