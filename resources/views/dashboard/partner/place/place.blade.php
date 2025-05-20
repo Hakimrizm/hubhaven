@@ -11,7 +11,7 @@
   <div class="col-md-12 d-flex justify-content-between">
     <div>
       <h4 class="m-0">{{ $place->place_name }}</h4>
-      <span class="badge bg-info">{{ $place->place_type }}</span>
+      @include('components.categoryBadge', ['category' => $place->place_type])
     </div>
     <div>
       <a href="/dashboard/place/{{ $place->id }}/edit" class="btn btn-info btn-sm">

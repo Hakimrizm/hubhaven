@@ -42,7 +42,7 @@
               @endif
             </td>
             <td>
-              <span class="badge bg-danger-subtle text-danger-emphasis">{{ $place->place_type }}</span>
+              @include('components.categoryBadge', ['category' => $place->place_type])
             </td>
             <td>
               <a href="/dashboard/place/{{ $place->id }}" class="btn btn-info btn-sm">
