@@ -51,9 +51,13 @@
               {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Setting</a></li>
-              <li><a class="dropdown-item" href="#">My Places</a></li>
-              <li><a class="dropdown-item" href="#">My Book</a></li>
+              @can('viewAny', \App\Models\Place::class)
+                <li><a class="dropdown-item" href="/dashboard/profile">Profile</a></li>
+                <li><a class="dropdown-item" href="#">My Places</a></li>
+                <li><a class="dropdown-item" href="#">My Book</a></li>
+              @else
+                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              @endcan
               <li><hr class="dropdown-divider"></li>
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-left"></i> Logout</a>
