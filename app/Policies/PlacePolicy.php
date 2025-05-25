@@ -16,6 +16,10 @@ class PlacePolicy
         //
     }
 
+    public function viewAny(User $user) {
+        return $user->role == 'partner';
+    }
+
     public function create(User $user) {
         return $user->role == 'partner';
     }

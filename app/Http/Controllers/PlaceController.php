@@ -38,8 +38,8 @@ class PlaceController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', Place::class);
         $partner_id = auth()->user()->partner->id;
-
         return view('dashboard.partner.place.index', [
             'places' => Place::where('partner_id', $partner_id)->get()
         ]);

@@ -16,7 +16,7 @@ class Partner extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function place(): HasMany {
+    public function places(): HasMany {
         return $this->hasMany(Place::class);
     }
 }

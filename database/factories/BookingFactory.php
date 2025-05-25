@@ -20,8 +20,8 @@ class BookingFactory extends Factory
         return [
             'user_id' => User::where('role', 'user')->inRandomOrder()->first()->id,
             'place_id' => fake()->numberBetween(1, 5),
-            'booking_start_time' => fake()->time('H:i:s'),
-            'booking_end_time' => fake()->time('H:i:s'),
+            'booking_start_time' => fake()->dateTime(),
+            'booking_end_time' => fake()->dateTime(),
             'status' => fake()->randomElement(['pending', 'canceled', 'confirmed', 'complete'])
         ];
     }

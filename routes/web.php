@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [VisitorController::class, 'welcome'])->name('welcome');
+Route::get('/place/{place}', [VisitorController::class, 'placeShow']);
 
 Auth::routes();
 
@@ -24,3 +26,5 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 
 Route::resource('/dashboard/place', App\Http\Controllers\PlaceController::class)->middleware('auth');
 Route::delete('/dashboard/place/image/{imagePlace}', [App\Http\Controllers\PlaceController::class, 'deleteImage'])->name('place.image.delete');
+
+Route::get('/booking/{place}', [BookingController::class, 'showBooking']);

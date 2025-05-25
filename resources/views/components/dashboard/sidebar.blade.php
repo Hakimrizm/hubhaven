@@ -34,60 +34,62 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-building-gear"></i>
-            <p>Manage my place
-              <i class="nav-arrow bi bi-chevron-right"></i>
-            </p>
-          </a>
+        @can('viewAny', \App\Models\Place::class)    
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-building-gear"></i>
+              <p>Manage my place
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
 
-          <ul class="nav nav-treeview">
-            <div class="nav-item">
-              <a href="/dashboard/place" class="nav-link">
-                <i class="nav-icon bi bi bi-buildings""></i>
-                <p>My Places</p>
-              </a>
-            </div>
-          </ul>
-          <ul class="nav nav-treeview">
-            <div class="nav-item">
-              <a href="/dashboard/place/create" class="nav-link">
-                <i class="nav-icon bi bi-building-fill-add"></i>
-                <p>Add Places</p>
-              </a>
-            </div>
-          </ul>
-          <ul class="nav nav-treeview">
-            <div class="nav-item">
-              <a href="" class="nav-link">
-                <i class="nav-icon bi bi-building-fill"></i>
-                <p>Company Profile</p>
-              </a>
-            </div>
-          </ul>
-        </li>
+            <ul class="nav nav-treeview">
+              <div class="nav-item">
+                <a href="/dashboard/place" class="nav-link">
+                  <i class="nav-icon bi bi bi-buildings""></i>
+                  <p>My Places</p>
+                </a>
+              </div>
+            </ul>
+            <ul class="nav nav-treeview">
+              <div class="nav-item">
+                <a href="/dashboard/place/create" class="nav-link">
+                  <i class="nav-icon bi bi-building-fill-add"></i>
+                  <p>Add Places</p>
+                </a>
+              </div>
+            </ul>
+            <ul class="nav nav-treeview">
+              <div class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="nav-icon bi bi-building-fill"></i>
+                  <p>Company Profile</p>
+                </a>
+              </div>
+            </ul>
+          </li>
 
-        <div class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi-book-half"></i>
-            <p>Book</p>
-          </a>
-        </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi-book-half"></i>
+              <p>Book</p>
+            </a>
+          </div>
 
-        <div class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-clock-history"></i>
-            <p>Book History</p>
-          </a>
-        </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-clock-history"></i>
+              <p>Book History</p>
+            </a>
+          </div>
 
-        <div class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-chat-left-dots-fill"></i>
-            <p>Review</p>
-          </a>
-        </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-chat-left-dots-fill"></i>
+              <p>Review</p>
+            </a>
+          </div>
+        @endcan
         {{-- <li class="nav-header">EXAMPLES</li> --}}
       </ul>
       <!--end::Sidebar Menu-->

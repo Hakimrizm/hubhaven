@@ -29,7 +29,7 @@
 </div>
 
 <div class="row mt-2">
-@foreach ($place->imagePlace as $image)
+@foreach ($place->imagePlaces as $image)
   <div class="col-md-4">
     <img src="{{ asset('storage/' . $image->image_place_url) }}" alt="" width="100%">
   </div>

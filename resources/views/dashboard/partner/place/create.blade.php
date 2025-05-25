@@ -69,7 +69,7 @@
 
         <div class="mb-3">
           <label for="place-title" class="form-label">Location Link</label>
-          <input type="text" class="form-control @error('place_location_url') is-invalid @enderror" id="place-title" placeholder="https://...." value="{{ old('place_location_url') }}" name="place_location_url">
+          <input type="text" class="form-control @error('place_location_url') is-invalid @enderror" id="place-title" placeholder="https://maps.app.goo.gl/" value="{{ old('place_location_url') }}" name="place_location_url">
           @error('place_location_url')
             <span class="text-danger d-inline-block mt-2">{{ $message }}</span>
           @enderror

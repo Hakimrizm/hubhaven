@@ -23,7 +23,7 @@
 
       <div class="mb-3">
         <div id="images-wapper" class="d-flex flex-wrap gap-3">
-          @foreach ($place->imagePlace as $image)
+          @foreach ($place->imagePlaces as $image)
             <div data-id="{{ $image->id }}" style="position: relative;">
               <img src="{{ asset('storage/' . $image->image_place_url) }}" style="width: 100px;">
               <input type="hidden" name="old_image_place[]" value="{{ $image->id }}">
@@ -84,7 +84,7 @@
 
       <div class="mb-3">
         <label class="form-label">Location Link</label>
-        <input type="text" class="form-control @error('place_location_url') is-invalid @enderror" placeholder="https://...." name="place_location_url" value="{{ old('place_location_url', $place->place_location_url ?? '') }}">
+        <input type="text" class="form-control @error('place_location_url') is-invalid @enderror" placeholder="https://maps.app.goo.gl/" name="place_location_url" value="{{ old('place_location_url', $place->place_location_url ?? '') }}">
         @error('place_location_url')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror

@@ -49,15 +49,15 @@ class User extends Authenticatable
         return $this->hasOne(Partner::class);
     }
 
-    public function booking(): HasMany {
+    public function bookings(): HasMany {
         return $this->hasMany(Booking::class);
     }
 
-    public function review(): HasMany {
+    public function reviews(): HasMany {
         return $this->hasMany(Review::class);
     }
 
-    public function comment(): HasMany {
+    public function comments(): HasMany {
         return $this->hasMany(Comment::class);
     }
 }

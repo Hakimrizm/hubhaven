@@ -18,11 +18,15 @@ class Place extends Model
         return $this->belongsTo(Partner::class);
     }
 
-    public function imagePlace(): HasMany {
+    public function imagePlaces(): HasMany {
         return $this->hasMany(ImagePlace::class);
     }
 
-    public function review(): HasMany {
+    public function reviews(): HasMany {
         return $this->hasMany(Review::class);
+    }
+
+    public function bookings(): HasMany {
+        return $this->hasMany(Booking::class);
     }
 }
