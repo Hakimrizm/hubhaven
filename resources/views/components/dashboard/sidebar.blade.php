@@ -61,7 +61,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <div class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('profile.show', ['profile' => auth()->user()->partner->id]) }}" class="nav-link">
                   <i class="nav-icon bi bi-building-fill"></i>
                   <p>Company Profile</p>
                 </a>

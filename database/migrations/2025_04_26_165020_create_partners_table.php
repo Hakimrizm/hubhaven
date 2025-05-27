@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
             $table->text('partner_address');
-            $table->string('place_location_url')->nullable();
+            $table->string('partner_location_url')->nullable();
             $table->string('partner_bussiness_name');
             $table->string('partner_phone')->unique();
             $table->text('partner_description');
