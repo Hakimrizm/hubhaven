@@ -2,59 +2,72 @@
 
 @section('content')
 <div class="container py-5">
-  <div class="row g-2 gallery-container mb-5" style="height: 500px;">
-    @if ($place->imagePlaces->count() > 0)
-      <div class="col-md-6 h-100">
-        <div class="img-wrapper h-100">
-          <img
-            src="{{ asset('storage/' . $place->imagePlaces[0]->image_place_url) }}"
-            alt=""
-            class="gallery-img"
-            data-bs-toggle="modal"
-            data-bs-target="#imageModal"
-            data-image="{{ asset('storage/' . $place->imagePlaces[0]->image_place_url) }}"
-          >
+  @if ($place->imagePlaces->count() > 0)
+    <div class="row g-2 gallery-container mb-5" style="height: 500px;">
+      @if ($place->imagePlaces->count() > 0)
+        <div class="col-md-6 h-100">
+          <div class="img-wrapper h-100">
+            <img
+              src="{{ asset('storage/' . $place->imagePlaces[0]->image_place_url) }}"
+              alt=""
+              class="gallery-img"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+              data-image="{{ asset('storage/' . $place->imagePlaces[0]->image_place_url) }}"
+            >
+          </div>
         </div>
-      </div>
-    @endif
+      @endif
 
-    <div class="col-md-6 h-100 d-flex flex-column">
-      @for ($i = 1; $i < min(5, $place->imagePlaces->count()); $i += 2)
-        <div class="row g-2 h-50">
-          @for ($j = 0; $j < 2; $j++)
-            @php $index = $i + $j; @endphp
-            @if (isset($place->imagePlaces[$index]))
-              <div class="col-6">
-                <div class="img-wrapper h-100 position-relative">
-                  <img
-                    src="{{ asset('storage/' . $place->imagePlaces[$index]->image_place_url) }}"
-                    alt=""
-                    class="gallery-img"
-                    data-bs-toggle="modal"
-                    data-bs-target="#imageModal"
-                    data-image="{{ asset('storage/' . $place->imagePlaces[$index]->image_place_url) }}"
-                  >
-                  @if ($index === 4 && $place->imagePlaces->count() > 5)
-                    <div class="overlay">Lihat semua foto</div>
-                  @endif
+      <div class="col-md-6 h-100 d-flex flex-column">
+        @for ($i = 1; $i < min(5, $place->imagePlaces->count()); $i += 2)
+          <div class="row g-2 h-50">
+            @for ($j = 0; $j < 2; $j++)
+              @php $index = $i + $j; @endphp
+              @if (isset($place->imagePlaces[$index]))
+                <div class="col-6">
+                  <div class="img-wrapper h-100 position-relative">
+                    <img
+                      src="{{ asset('storage/' . $place->imagePlaces[$index]->image_place_url) }}"
+                      alt=""
+                      class="gallery-img"
+                      data-bs-toggle="modal"
+                      data-bs-target="#imageModal"
+                      data-image="{{ asset('storage/' . $place->imagePlaces[$index]->image_place_url) }}"
+                    >
+                    @if ($index === 4 && $place->imagePlaces->count() > 5)
+                      <div class="overlay">Lihat semua foto</div>
+                    @endif
+                  </div>
                 </div>
-              </div>
-            @endif
-          @endfor
-        </div>
-      @endfor
+              @endif
+            @endfor
+          </div>
+        @endfor
+      </div>
     </div>
-  </div>
+  @else
+    <div class="col-12 d-flex align-items-center justify-content-center" style="height: 100%;">
+      <p class="text-muted fs-5">This place doesn't have image yet.</p>
+    </div>
+  @endif
 
   <div class="row mb-5">
     <div class="col-md-6">
-      <h2 class="mb-2">{{ $place->place_name }}</h2>
-      <div class="d-flex">
-        <span class="h5"><i class="bi bi-star-fill text-warning"></i> 4/<span class="text-muted h6">5 (400 Review)</span></span>
+      <div class="mb-3">
+        <div class="mb-0 d-flex align-items-center gap-2">
+          <h2>{{ $place->place_name }}</h2>
+
+          <div class="d-flex">
+            <span class="h5"><i class="bi bi-star-fill text-warning"></i> 4/<span class="text-muted h6">5 (400 Review)</span></span>
+          </div>
+        </div>
+        <span>By <a href="">{{ $place->partner->partner_bussiness_name }}</a></span>
       </div>
+
       <div class="text-muted mb-2">
-        <span class="d-block"><i class="bi bi-clock-fill"></i> Open time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $place->place_open_time)->format('H:i') }} WIB</span>
-        <span class="d-block"><i class="bi bi-clock"></i> Closed Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $place->place_close_time)->format('H:i') }}</span>
+        <span class="d-block"><i class="bi bi-clock-fill"></i> Open time: {{ \Carbon\Carbon::parse($place->place_open_time)->format('H:i') }} WIB</span>
+        <span class="d-block"><i class="bi bi-clock"></i> Closed Time: {{ \Carbon\Carbon::parse($place->place_close_time)->format('H:i') }} WIB</span>
       </div>
       <a target="_blank" href="{{ ($place->place_location_url) ? $place->place_location_url : '#' }}" class="text-muted {{ ($place->place_location_url) ? '' : 'text-decoration-none' }}"><i class="bi bi-geo-alt-fill"></i> {{ $place->place_address }}</a>
     </div>

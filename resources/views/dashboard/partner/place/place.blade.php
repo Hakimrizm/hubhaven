@@ -45,11 +45,11 @@
       </tr>
       <tr>
         <th>Open Time</th>
-        <td>{{ \Carbon\Carbon::createFromFormat('H:i:s', $place->place_open_time)->format('H:i') }} WIB</td>
+        <td>{{ \Carbon\Carbon::parse($place->place_open_time)->format('H:i') }} WIB</td>
       </tr>
       <tr>
         <th>Close Time</th>
-        <td>{{ \Carbon\Carbon::createFromFormat('H:i:s', $place->place_close_time)->format('H:i') }} WIB</td>
+        <td>{{ \Carbon\Carbon::parse($place->place_close_time)->format('H:i') }} WIB</td>
       </tr>
       <tr>
         <th>Address</th>

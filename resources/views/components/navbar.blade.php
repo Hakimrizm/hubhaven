@@ -55,7 +55,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               @can('viewAny', \App\Models\Place::class)
-                <li><a class="dropdown-item" href="/dashboard/profile">Profile</a></li>
+                <li><a class="dropdown-item" href="{{ route('profile.show', ['profile' => auth()->user()->partner->id]) }}">Profile</a></li>
                 <li><a class="dropdown-item" href="#">My Places</a></li>
                 <li><a class="dropdown-item" href="#">My Book</a></li>
               @else
