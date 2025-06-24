@@ -1,5 +1,15 @@
-import { theme } from "./modules/theme.js";
-
 document.addEventListener("DOMContentLoaded", function () {
-  theme();
+  const navbar = document.getElementById("main-navbar");
+
+  function updateNavbarClass() {
+    if (window.scrollY > 0) {
+      navbar.classList.add("bg-dark", "navbar-dark");
+    } else {
+      navbar.classList.remove("bg-dark", "navbar-dark");
+    }
+  }
+
+  updateNavbarClass();
+
+  window.addEventListener("scroll", updateNavbarClass);
 });

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,4 +66,23 @@
     @yield('content')
     <script src="{{ asset('js/app.js') }}" type="module"></script>
   </body>
+
+  {{-- Photo by <a href="https://unsplash.com/@alicekat?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alice Donovan Rouse</a> on <a href="https://unsplash.com/photos/closeup-photo-of-torn-papers-yu68fUQDvOI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  --}}
+
+  {{-- 
+  Photo by <a href="https://unsplash.com/@john_matychuk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">John Matychuk</a> on <a href="https://unsplash.com/photos/music-room-with-lights-turned-on-gUK3lA3K7Yo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  --}}
+
+  {{--
+  Photo by <a href="https://unsplash.com/@reddfrancisco?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Redd Francisco</a> on <a href="https://unsplash.com/photos/people-sitting-on-chair-5U_28ojjgms?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  --}}
+
+  {{--
+  Photo by <a href="https://unsplash.com/@shridhar?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Shridhar Gupta</a> on <a href="https://unsplash.com/photos/people-sitting-in-front-of-computer-monitors-dZxQn4VEv2M?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  --}}
+
+  {{--
+  Photo by <a href="https://unsplash.com/@zacgudakov?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Zac Gudakov</a> on <a href="https://unsplash.com/photos/a-group-of-people-at-a-race-track-K_mNrmszLXM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  --}}
 </html>

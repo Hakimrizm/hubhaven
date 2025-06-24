@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-secondary-subtle shadow-sm position-sticky top-0 z-3">
+<nav class="navbar navbar-expand-lg position-sticky top-0 z-3" id="main-navbar">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="/">
       <img src="{{ asset('/images/logo.png') }}" alt="Bootstrap" width="30">
@@ -29,15 +29,6 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i id="theme-icon" class="bi bi-moon-stars"></i>
-          </a>
-          <ul class="dropdown-menu theme-menu">
-            <li><button class="dropdown-item" type="button" data-theme="dark"><i class="bi bi-moon-stars"></i> Dark</button></li>
-            <li><button class="dropdown-item" data-theme="light"><i class="bi bi-brightness-high-fill"></i> Light</button></li>
-          </ul>
-        </li>
         @guest
           <li class="nav-item">
             <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a>
@@ -56,10 +47,10 @@
             <ul class="dropdown-menu dropdown-menu-end">
               @can('viewAny', \App\Models\Place::class)
                 <li><a class="dropdown-item" href="{{ route('profile.show', ['profile' => auth()->user()->partner->id]) }}">Profile</a></li>
+                <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                 <li><a class="dropdown-item" href="#">My Places</a></li>
-                <li><a class="dropdown-item" href="#">My Book</a></li>
               @else
-                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                <li><a class="dropdown-item" href="route('userProfile.show')">Profile</a></li>
               @endcan
               <li><hr class="dropdown-divider"></li>
               <li>

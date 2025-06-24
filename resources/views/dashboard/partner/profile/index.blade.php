@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          <a href="#" class="btn btn-outline-info w-100">Edit Profile</a>
+          <a href="{{ route('userProfile.show', auth()->user()->id) }}" class="btn btn-outline-info w-100">Edit Profile</a>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
             <span class="text-muted">{{ $profile->partner_description }}</span>
           </div>
 
-          <a href="{{ route('profile.edit', ['profile' => $profile->id]) }}" class="btn btn-outline-info">Edit Profile</a>
+          <a href="{{ route('profile.edit', ['profile' => $profile->id]) }}" class="btn btn-outline-info">Edit Company Profile</a>
         </div>
       </div>
     </div>

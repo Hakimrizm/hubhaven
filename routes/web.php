@@ -35,5 +35,7 @@ Route::prefix('dashboard')->group(function() {
   Route::resource('/profile', App\Http\Controllers\PartnerProfileController::class)->middleware(['auth']);
 });
 
-
 Route::get('/booking/{place}', [BookingController::class, 'showBooking']);
+Route::get('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('userProfile.show');
+Route::get('/profile/setting/{user}/edit', [App\Http\Controllers\UserProfileController::class, 'show'])->name('userProfile.edit');
+Route::put('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'update'])->name('userProfile.update');
