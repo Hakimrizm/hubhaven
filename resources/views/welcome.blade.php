@@ -95,4 +95,113 @@
   </div>
 </div>
 
+<div class="container py-5">
+  <div class="row mb-2">
+    <div class="col-md-12">
+      <h2>Testimonials</h2>
+    </div>
+  </div>
+
+  <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Testimoni 1 -->
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-12 text-center d-flex justify-content-center">
+            <div style="max-width: 700px;">
+              <div class="rounded-circle overflow-hidden mb-3 mx-auto" style="width: 120px; height: 120px;">
+                <img src="{{ asset('images/profile/default.png') }}" alt="profile user"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+
+              <h5 class="mb-1">Sarah Span</h5>
+              <span class="text-muted mb-3 d-block">Owner Studio EMG</span>
+
+              <p class="px-3" style="font-family: Arial, sans-serif;">
+                “Since I started using <strong>HubHaven</strong>, managing bookings for my studio has become
+                incredibly simple. I can focus more on growing my business instead of dealing with scheduling
+                conflicts.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimoni 2 -->
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-12 text-center d-flex justify-content-center">
+            <div style="max-width: 700px;">
+              <div class="rounded-circle overflow-hidden mb-3 mx-auto" style="width: 120px; height: 120px;">
+                <img src="{{ asset('images/profile/default.png') }}" alt="profile user"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+
+              <h5 class="mb-1">Raka Andrian</h5>
+              <span class="text-muted mb-3 d-block">Freelancer & Musician</span>
+
+              <p class="px-3" style="font-family: Arial, sans-serif;">
+                “With <strong>HubHaven</strong>, finding and booking creative spaces has never been easier.
+                I love how simple and fast everything is — total game-changer for freelancers like me.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Carousel controls -->
+    <button class="carousel-control-prev btn" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+</div>
+
+
+<footer class="mt-auto bg-dark" style="color: #faeded; padding: 3rem 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <h5>About Us</h5>
+        <p>HubHaven is your all-in-one space booking platform — from meeting rooms and music studios to dance spaces and sports fields. We make it easy to discover, book, and manage the perfect place for your needs, anytime and anywhere.</p>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>Social Media</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-white">Home</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Services</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>Assets in this website</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-white">Home</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Services</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>Follow Us</h5>
+        <ul class="list-inline social-icons">
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="bi bi-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="bi bi-twitter"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="bi bi-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>&copy; 2025 HubHaven. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
 @endsection

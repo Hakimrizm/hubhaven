@@ -53,6 +53,19 @@
         height: 50%;
       }
 
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 40px;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        background-size: 60% 60%;
+        border-radius: 50%;
+        padding: 8px;
+      }
+
       @media (max-width: 768px) {
         .gallery-container,
         .h-50 {
