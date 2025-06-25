@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserProfileController extends Controller
 {
@@ -20,7 +21,7 @@ class UserProfileController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('setting.update', compact('user'));
     }
 
     /**
@@ -28,7 +29,19 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255|string',
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id),
+            ],
+        ]);
+
+        $user->update($validated);
+
+        return redirect("/profile/setting/$user->id")->with('success', 'Your account has been updated');
     }
 
     /**
@@ -36,6 +49,7 @@ class UserProfileController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect('login')->with('success', 'Your account has been delete');
     }
 }

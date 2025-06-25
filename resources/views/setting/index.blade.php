@@ -16,7 +16,7 @@
 
               <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
                 <a href="{{ route('userProfile.edit', $user->id) }}" class="btn btn-info">Edit Profile</a>
-                <a href="{{ route('userProfile.edit', $user->id) }}" class="btn btn-primary">Reset Password</a>
+                <a href="{{ route('password.request') }}" class="btn btn-primary">Reset Password</a>
                 <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
                   @csrf
                   @method('DELETE')
