@@ -50,7 +50,7 @@
                 <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                 <li><a class="dropdown-item" href="#">My Places</a></li>
               @else
-                <li><a class="dropdown-item" href="route('userProfile.show')">Profile</a></li>
+                <li><a class="dropdown-item" href="{{ route('userProfile.show', ['user' => auth()->user()->id]) }}">Profile</a></li>
               @endcan
               <li><hr class="dropdown-divider"></li>
               <li>

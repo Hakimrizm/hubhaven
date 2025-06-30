@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('place_id');
             $table->dateTime('booking_start_time');
             $table->dateTime('booking_end_time');
-            $table->enum('status', ['pending', 'canceled', 'confirmed', 'complete'])->default('confirmed');
+            $table->enum('status', ['pending', 'canceled', 'confirmed', 'complete'])->default('pending');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
