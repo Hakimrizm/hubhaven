@@ -12,7 +12,7 @@ class Comment extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    protected $with = ['user', 'comment'];
+    protected $with = ['user', 'place'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
@@ -20,13 +20,5 @@ class Comment extends Model
 
     public function place(): BelongsTo {
         return $this->belongsTo(Place::class);
-    }
-
-    public function parent(): BelongsTo {
-        return $this->belongsTo(Comment::class, 'comment_parent_id');
-    }
-
-    public function replies(): HasMany {
-        return $this->hasMany(Comment::class, 'comment_parent_id');
     }
 }

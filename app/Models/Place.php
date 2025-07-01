@@ -29,4 +29,13 @@ class Place extends Model
     public function bookings(): HasMany {
         return $this->hasMany(Booking::class);
     }
+
+    public function comments(): HasMany {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('review_rating');
+    }
 }

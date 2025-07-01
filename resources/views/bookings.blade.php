@@ -43,12 +43,12 @@
               </td>
               <td>
                 @if ($booking->status === 'complete')
-                  <a href="{{ route('review.form', $booking->id) }}" class="btn btn-success">Review</a>
+                  <a href="{{ route('review.form', $booking->id) }}" class="btn btn-success btn-sm">Review</a>
                 @else
                   <form action="{{ route('booking.cancel', $booking->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking?')">
                     @csrf
                     @method('PUT')
-                    <button class="btn btn-danger">Cancel</button>
+                    <button class="btn btn-danger btn-sm">Cancel</button>
                   </form>
                 @endif
               </td>

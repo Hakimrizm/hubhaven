@@ -17,21 +17,15 @@ class VisitorController extends Controller
 
     public function placeShow(Place $place)
     {
-        $bookings = Booking::with(['user', 'place'])->get();
-
-        $events = $bookings->map(function ($booking) {
-            return [
-                'title' => $booking->place->place_name . ' - ' . $booking->user->name,
-                'start' => $booking->booking_start_time,
-                'end' => $booking->booking_end_time,
-                'color' => $this->statusColor($booking->status),
-            ];
-        });
-
-        return view('placeDetail', [
-            'bookings' => $events,
-            'place' => $place
+        // Eager load comments beserta user dan reviews dari user tsb
+        $place->load([
+            'comments.user',
+            'reviews', // Untuk review rating per user
         ]);
+
+        $comments = $place->comments;
+
+        return view('placeDetail', compact('place', 'comments'));
     }
 
     private function statusColor($status)

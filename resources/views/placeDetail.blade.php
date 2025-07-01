@@ -103,13 +103,43 @@
         </div>
         <div class="col-md-6 d-flex justify-content-end align-items-center">
           <h4>
+            @php
+              $averageRating = $place->averageRating();
+              $totalReviews = $place->reviews->count();
+            @endphp
             <span class="h4 me-2">
-              <i class="bi bi-star-fill text-warning"></i> 4/
-              <span class="text-muted h6">5 (400 Review)</span>
+              <i class="bi bi-star-fill text-warning"></i> {{ $averageRating }} /
+              <span class="text-muted h6">5 ({{ $totalReviews }} Review{{ $totalReviews !== 1 ? 's' : '' }})</span>
             </span>
           </h4>
         </div>
       </div>
+
+      @foreach ($comments as $comment)
+        @php
+          $rating = $place->reviews->firstWhere('user_id', $comment->user_id)?->review_rating ?? 0;
+        @endphp
+
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <div class="d-flex gap-3 align-items-start">
+              <div class="rounded-circle overflow-hidden border" style="width: 50px; height: 50px;">
+                <img src="{{ asset('images/profile/default.png') }}" alt="user" width="100%" height="100%" style="object-fit: cover;">
+              </div>
+              <div>
+                <strong>{{ $comment->user->name ?? 'Anonymous' }}</strong>
+                <div>
+                  @for ($i = 1; $i <= 5; $i++)
+                    <span style="color: {{ $i <= $rating ? 'gold' : '#ccc' }}; font-size: 1.2rem;">&#9733;</span>
+                  @endfor
+                </div>
+                <p class="mb-0 text-muted">{{ $comment->comment_content }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      @endforeach
+
     </div>
   </div>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\PartnerRegisterController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -40,9 +41,13 @@ Route::prefix('dashboard')->group(function() {
 Route::get('api/booking/{place}', [BookingController::class, 'showBooking']);
 Route::post('booking', [BookingController::class, 'store'])->name('booking.store');
 Route::get('myBookings', [BookingController::class, 'myBookings'])->name('myBookings');
+Route::get('/review/{booking}', [ReviewController::class, 'create'])->name('review.form');
 Route::put('booking/{booking}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
 Route::put('booking/{booking}/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
 Route::put('booking/{booking}/complete', [BookingController::class, 'complete'])->name('booking.complete');
+
+Route::get('/review/{booking}', [ReviewController::class, 'create'])->name('review.form');
+Route::post('/review/{booking}', [ReviewController::class, 'store'])->name('review.store');
 
 Route::get('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('userProfile.show');
 Route::get('/profile/setting/{user}/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('userProfile.edit');

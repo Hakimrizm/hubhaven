@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('place_id');
-            $table->unsignedBigInteger('comment_parent_id')->nullable();
             $table->text('comment_content');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
-            $table->foreign('comment_parent_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
 
