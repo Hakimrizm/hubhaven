@@ -11,7 +11,7 @@ export function renderBookingCalendar(placeId, elementId = "calendar") {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     initialView: "timeGridWeek",
     selectable: true,
-    events: `/booking/${placeId}`,
+    events: `/api/booking/${placeId}`,
     selectOverlap: false,
     select: function (info) {
       console.log("User selected:", info.startStr, info.endStr);

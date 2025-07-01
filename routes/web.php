@@ -29,13 +29,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('dashboard')->group(function() {
   Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'partnerOrAdminOnly'])->name('dashboard');
 
+  
   Route::resource('/place', App\Http\Controllers\PlaceController::class)->middleware('auth');
   Route::delete('/place/image/{imagePlace}', [App\Http\Controllers\PlaceController::class, 'deleteImage'])->name('place.image.delete');
-
   Route::resource('/profile', App\Http\Controllers\PartnerProfileController::class)->middleware(['auth']);
+
+  Route::get('bookings', [BookingController::class, 'showAll'])->name('booking.showAll');
 });
 
-Route::get('/booking/{place}', [BookingController::class, 'showBooking']);
+Route::get('api/booking/{place}', [BookingController::class, 'showBooking']);
+Route::post('booking', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('userProfile.show');
 Route::get('/profile/setting/{user}/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('userProfile.edit');

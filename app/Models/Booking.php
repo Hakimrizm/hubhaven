@@ -11,7 +11,7 @@ class Booking extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    protected $with = ['user'];
+    protected $with = ['user', 'place'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);

@@ -114,6 +114,11 @@
   </div>
 
   <div class="row mt-3">
+    @auth
+      <div class="col-md-12 d-flex justify-content-end mb-3">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#book">Book Now!</button>
+      </div>
+    @endauth
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
@@ -131,6 +136,40 @@
       <div class="modal-body p-0">
         <img src="" id="modalImage" class="img-fluid w-100 rounded" alt="Preview">
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Booking -->
+<div class="modal fade" id="book" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Booking</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('booking.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="place_id" value="{{ $place->id }}">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="start" class="form-label">Date</label>
+            <input type="date" class="form-control" id="start" name="date">
+          </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">Start Time</label>
+            <input type="time" class="form-control" id="start" name="start_time">
+          </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">End Time</label>
+            <input type="time" class="form-control" id="end" name="end_time">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

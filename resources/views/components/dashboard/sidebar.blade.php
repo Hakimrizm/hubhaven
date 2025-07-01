@@ -70,9 +70,9 @@
           </li>
 
           <div class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('booking.showAll') }}" class="nav-link">
               <i class="nav-icon bi-book-half"></i>
-              <p>Book</p>
+              <p>Bookings</p>
             </a>
           </div>
 
