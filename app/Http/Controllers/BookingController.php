@@ -58,15 +58,21 @@ class BookingController extends Controller
             return back()->withErrors(['start_time' => 'This time has been booked.']);
         }
 
-        // Booking::create([
-        //     'user_id' => auth()->user()->id,
-        //     'place_id' => $request->place_id,
-        //     'booking_start_time' => $bookingStart,
-        //     'booking_end_time' => $bookingEnd,
-        //     'status' => 'pending',
-        // ]);
+        Booking::create([
+            'user_id' => auth()->user()->id,
+            'place_id' => $request->place_id,
+            'booking_start_time' => $bookingStart,
+            'booking_end_time' => $bookingEnd,
+            'status' => 'pending',
+        ]);
 
         return redirect('/')->with('success', 'Booking successfully added');
+    }
+
+    public function myBookings()
+    {
+        $bookings = auth()->user()->bookings;
+        return view('bookings', compact('bookings'));
     }
 
     public function showAll()
@@ -81,5 +87,17 @@ class BookingController extends Controller
             ->get();
 
         return $bookings;
+    }
+
+    public function cancel(Booking $booking)
+    {
+        if ($booking->status !== 'complete') {
+            $booking->status = 'canceled';
+            $booking->save();
+
+            return redirect()->back()->with('success', 'Booking canceled successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Completed booking cannot be canceled.');
     }
 }
