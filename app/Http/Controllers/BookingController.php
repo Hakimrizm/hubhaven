@@ -86,7 +86,27 @@ class BookingController extends Controller
             ->whereIn('place_id', $placeIds)
             ->get();
 
-        return $bookings;
+        return view('dashboard.partner.booking.index', compact('bookings'));
+    }
+
+    public function confirm(Booking $booking)
+    {
+        if ($booking->status === 'pending') {
+            $booking->status = 'confirmed';
+            $booking->save();
+            return redirect()->back()->with('success', 'Booking confirmed successfully.');
+        }
+        return redirect()->back()->with('error', 'Booking cannot be confirmed.');
+    }
+
+    public function complete(Booking $booking)
+    {
+        if ($booking->status === 'confirmed') {
+            $booking->status = 'complete';
+            $booking->save();
+            return redirect()->back()->with('success', 'Booking marked as complete.');
+        }
+        return redirect()->back()->with('error', 'Only confirmed bookings can be completed.');
     }
 
     public function cancel(Booking $booking)

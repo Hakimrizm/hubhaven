@@ -40,7 +40,9 @@ Route::prefix('dashboard')->group(function() {
 Route::get('api/booking/{place}', [BookingController::class, 'showBooking']);
 Route::post('booking', [BookingController::class, 'store'])->name('booking.store');
 Route::get('myBookings', [BookingController::class, 'myBookings'])->name('myBookings');
-Route::put('/booking/{booking}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
+Route::put('booking/{booking}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
+Route::put('booking/{booking}/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
+Route::put('booking/{booking}/complete', [BookingController::class, 'complete'])->name('booking.complete');
 
 Route::get('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('userProfile.show');
 Route::get('/profile/setting/{user}/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('userProfile.edit');
