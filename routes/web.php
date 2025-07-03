@@ -49,6 +49,8 @@ Route::put('booking/{booking}/complete', [BookingController::class, 'complete'])
 Route::get('/review/{booking}', [ReviewController::class, 'create'])->name('review.form');
 Route::post('/review/{booking}', [ReviewController::class, 'store'])->name('review.store');
 
+Route::get('places', [VisitorController::class, 'places'])->name('places');
+
 Route::get('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('userProfile.show');
 Route::get('/profile/setting/{user}/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('userProfile.edit');
 Route::put('/profile/setting/{user}', [App\Http\Controllers\UserProfileController::class, 'update'])->name('userProfile.update');
