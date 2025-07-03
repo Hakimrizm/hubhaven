@@ -20,11 +20,11 @@
             Categories
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Co-Working</a></li>
-            <li><a class="dropdown-item" href="#">Meeting Room</a></li>
-            <li><a class="dropdown-item" href="#">Studio</a></li>
-            <li><a class="dropdown-item" href="#">Field</a></li>
-            <li><a class="dropdown-item" href="#">Etc</a></li>
+            <li><a class="dropdown-item" href="{{ route('places', ['category' => 'co_working']) }}">Co-Working</a></li>
+            <li><a class="dropdown-item" href="{{ route('places', ['category' => 'meeting_room']) }}">Meeting Room</a></li>
+            <li><a class="dropdown-item" href="{{ route('places', ['category' => 'studio']) }}">Studio</a></li>
+            <li><a class="dropdown-item" href="{{ route('places', ['category' => 'field']) }}">Field</a></li>
+            <li><a class="dropdown-item" href="{{ route('places', ['category' => 'etc']) }}">Etc</a></li>
           </ul>
         </li>
       </ul>
