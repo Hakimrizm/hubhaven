@@ -112,8 +112,21 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
+        $completedBookings = $place->bookings()->where('status', 'complete')->get();
+
+        $totalVisited = $completedBookings->count();
+
+        $totalIncome = $completedBookings->sum(function ($booking) use ($place) {
+            $start = \Carbon\Carbon::parse($booking->booking_start_time);
+            $end = \Carbon\Carbon::parse($booking->booking_end_time);
+            $duration = $end->floatDiffInHours($start);
+            return $duration * $place->place_price_per_hour;
+        });
+
         return view('dashboard.partner.place.place', [
-            'place' => $place
+            'place' => $place,
+            'totalVisited' => $totalVisited,
+            'totalIncome' => $totalIncome,
         ]);
     }
 

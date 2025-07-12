@@ -85,13 +85,15 @@
 <div class="row mt-2">
   <div class="col-md-6 text-center">
     <div class="border py-4 rounded mb-2 shadow-sm">
-      <h5 class="fw-semibold mb-1">12</h5>
+      <h5 class="fw-semibold mb-1">{{ $totalVisited }}</h5>
       <span>Total Visited</span>
     </div>
   </div>
   <div class="col-md-6 text-center">
     <div class="border py-4 rounded mb-2 shadow-sm">
-      <h5 class="fw-semibold mb-1">1.200.000</h5>
+      <h5 class="fw-semibold mb-1">
+        {{ 'Rp. ' . number_format($totalIncome, 0, ',', '.') }}
+      </h5>
       <span>Total Income</span>
     </div>
   </div>

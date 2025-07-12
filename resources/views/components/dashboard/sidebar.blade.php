@@ -77,7 +77,7 @@
           </div>
 
           <div class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('review.show') }}" class="nav-link">
               <i class="nav-icon bi bi-chat-left-dots-fill"></i>
               <p>Review</p>
             </a>

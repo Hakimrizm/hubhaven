@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\PartnerRegisterController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::prefix('dashboard')->group(function() {
   Route::resource('/profile', App\Http\Controllers\PartnerProfileController::class)->middleware(['auth']);
 
   Route::get('bookings', [BookingController::class, 'showAll'])->name('booking.showAll');
+  Route::get('review', [DashboardController::class, 'review'])->name('review.show');
 });
 
 Route::get('api/booking/{place}', [BookingController::class, 'showBooking']);

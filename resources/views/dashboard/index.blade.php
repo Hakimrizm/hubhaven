@@ -162,7 +162,7 @@
   </div>
 
   {{-- Chart Section --}}
-  <h4 class="mb-3">Visualisasi Status Booking</h4>
+  <h4 class="mb-3">Status Booking</h4>
   <div class="card mb-4">
     <div class="card-body">
       <canvas id="bookingChart" width="400" height="200"></canvas>
