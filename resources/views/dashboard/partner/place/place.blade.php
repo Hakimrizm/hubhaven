@@ -92,7 +92,7 @@
   <div class="col-md-6 text-center">
     <div class="border py-4 rounded mb-2 shadow-sm">
       <h5 class="fw-semibold mb-1">
-        {{ 'Rp. ' . number_format($totalIncome, 0, ',', '.') }}
+        {{ 'Rp. ' . number_format($place->place_income, 0, ',', '.') }}
       </h5>
       <span>Total Income</span>
     </div>

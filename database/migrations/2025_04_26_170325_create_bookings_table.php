@@ -18,6 +18,7 @@ return new class extends Migration
             $table->dateTime('booking_start_time');
             $table->dateTime('booking_end_time');
             $table->enum('status', ['pending', 'canceled', 'confirmed', 'complete'])->default('pending');
+            $table->decimal('booking_total');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

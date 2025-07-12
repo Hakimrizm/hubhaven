@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('place_address');
             $table->time('place_open_time');
             $table->time('place_close_time');
+            $table->decimal('place_income')->default(0);
             $table->timestamps();
 
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');

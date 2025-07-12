@@ -42,27 +42,33 @@ class BookingController extends Controller
         $bookingStart = Carbon::parse($request->date . ' ' . $request->start_time);
         $bookingEnd = Carbon::parse($request->date . ' ' . $request->end_time);
 
+        // Cek konflik waktu booking
         $conflict = Booking::where('place_id', $request->place_id)
-        ->where(function ($query) use ($bookingStart, $bookingEnd) {
-            $query->whereBetween('booking_start_time', [$bookingStart, $bookingEnd])
-                  ->orWhereBetween('booking_end_time', [$bookingStart, $bookingEnd])
-                  ->orWhere(function ($query) use ($bookingStart, $bookingEnd) {
-                      $query->where('booking_start_time', '<=', $bookingStart)
+            ->where(function ($query) use ($bookingStart, $bookingEnd) {
+                $query->whereBetween('booking_start_time', [$bookingStart, $bookingEnd])
+                    ->orWhereBetween('booking_end_time', [$bookingStart, $bookingEnd])
+                    ->orWhere(function ($query) use ($bookingStart, $bookingEnd) {
+                        $query->where('booking_start_time', '<=', $bookingStart)
                             ->where('booking_end_time', '>=', $bookingEnd);
-                  });
-        })
-        ->whereIn('status', ['pending', 'confirmed']) // hanya booking aktif
-        ->exists();
+                    });
+            })
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->exists();
 
         if ($conflict) {
-            return back()->withErrors(['start_time' => 'This time has been booked.']);
+            return back()->withErrors(['error' => 'This time has been booked.']);
         }
+
+        $place = Place::findOrFail($request->place_id);
+        $duration = $bookingEnd->floatDiffInHours($bookingStart);
+        $bookingTotal = $duration * $place->place_price_per_hour;
 
         Booking::create([
             'user_id' => auth()->user()->id,
             'place_id' => $request->place_id,
             'booking_start_time' => $bookingStart,
             'booking_end_time' => $bookingEnd,
+            'booking_total' => $bookingTotal,
             'status' => 'pending',
         ]);
 
@@ -104,6 +110,11 @@ class BookingController extends Controller
         if ($booking->status === 'confirmed') {
             $booking->status = 'complete';
             $booking->save();
+
+            $place =  $booking->place;
+            $place->place_income += $booking->booking_total;
+            $place->save();
+
             return redirect()->back()->with('success', 'Booking marked as complete.');
         }
         return redirect()->back()->with('error', 'Only confirmed bookings can be completed.');
@@ -115,7 +126,7 @@ class BookingController extends Controller
             $booking->status = 'canceled';
             $booking->save();
 
-            return redirect()->back()->with('success', 'Booking canceled successfully.');
+            return redirect()->back()->with('success', 'Booking completed successfully.');
         }
 
         return redirect()->back()->with('error', 'Completed booking cannot be canceled.');

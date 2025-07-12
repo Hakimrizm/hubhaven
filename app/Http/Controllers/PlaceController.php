@@ -86,7 +86,8 @@ class PlaceController extends Controller
             'place_address' => $request->place_address,
             'place_type' => $request->place_type,
             'place_description' => $request->place_description,
-            'place_location_url' => $request->place_location_url
+            'place_location_url' => $request->place_location_url,
+            'place_income' => 0
         ]);
 
         if($request->hasFile('image_place_url')) {
@@ -116,17 +117,9 @@ class PlaceController extends Controller
 
         $totalVisited = $completedBookings->count();
 
-        $totalIncome = $completedBookings->sum(function ($booking) use ($place) {
-            $start = \Carbon\Carbon::parse($booking->booking_start_time);
-            $end = \Carbon\Carbon::parse($booking->booking_end_time);
-            $duration = $end->floatDiffInHours($start);
-            return $duration * $place->place_price_per_hour;
-        });
-
         return view('dashboard.partner.place.place', [
             'place' => $place,
             'totalVisited' => $totalVisited,
-            'totalIncome' => $totalIncome,
         ]);
     }
 
