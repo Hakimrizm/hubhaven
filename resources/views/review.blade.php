@@ -32,10 +32,6 @@
 <div class="container mt-4">
   <h2>Review Booking: {{ $booking->place->place_name }}</h2>
 
-  @if (session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-  @endif
-
   <div class="card">
     <div class="card-body">
       <form action="{{ route('review.store', $booking->id) }}" method="POST">

@@ -78,6 +78,26 @@
     @include('components.navbar')
     @yield('content')
     <script src="{{ asset('js/app.js') }}" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        @if (session('success'))
+          Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: {!! json_encode(session('success')) !!},
+            confirmButtonColor: "#3085d6"
+          });
+        @elseif (session('error'))
+          Swal.fire({
+            icon: "error",
+            title: "Failed!",
+            text: {!! json_encode(session('error')) !!},
+            confirmButtonColor: "#d33"
+          });
+        @endif
+      });
+    </script>
   </body>
 
   {{-- Photo by <a href="https://unsplash.com/@alicekat?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alice Donovan Rouse</a> on <a href="https://unsplash.com/photos/closeup-photo-of-torn-papers-yu68fUQDvOI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>

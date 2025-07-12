@@ -72,7 +72,7 @@ class BookingController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect('/')->with('success', 'Booking successfully added');
+        return redirect('/myBookings')->with('success', 'Booking successfully added');
     }
 
     public function myBookings()

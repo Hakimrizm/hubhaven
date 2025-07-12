@@ -19,4 +19,9 @@ class Review extends Model
     public function place(): BelongsTo {
         return $this->belongsTo(Place::class);
     }
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class, 'place_id', 'place_id');
+    }
 }
