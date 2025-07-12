@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+{{-- <div class="row">
   <!--begin::Col-->
   <div class="col-lg-3 col-6">
     <!--begin::Small Box Widget 1-->
@@ -128,5 +128,103 @@
     <!--end::Small Box Widget 4-->
   </div>
   <!--end::Col-->
+</div> --}}
+
+<div class="container">
+  <h1 class="mb-4">Dashboard Partner</h1>
+
+  {{-- Summary Cards --}}
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="small-box text-bg-primary">
+        <div class="inner">
+          <h5>Jumlah Tempat</h5>
+          <p class="h3">{{ $placeCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="small-box text-bg-success">
+        <div class="inner">
+          <h5>Total Booking</h5>
+          <p class="h3">{{ $bookingCount }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="small-box text-bg-warning">
+        <div class="inner">
+          <h5>Rating Rata-rata</h5>
+          <p class="h3">{{ number_format($averageRating, 1) ?: '0.0' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- Chart Section --}}
+  <h4 class="mb-3">Visualisasi Status Booking</h4>
+  <div class="card mb-4">
+    <div class="card-body">
+      <canvas id="bookingChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+
+  {{-- Komentar --}}
+  <h4 class="mb-3">Komentar Terbaru</h4>
+  <ul class="list-group">
+    @forelse ($latestComments as $comment)
+    <li class="list-group-item">
+      <strong>{{ $comment->user->name }}</strong>: {{ $comment->comment_content }} <br />
+      <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+    </li>
+    @empty
+    <li class="list-group-item text-muted">Belum ada komentar</li>
+    @endforelse
+  </ul>
 </div>
+
 @endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const bookingData = {
+    labels: ['Pending', 'Confirmed', 'Canceled', 'Complete'],
+    datasets: [{
+      label: 'Jumlah Booking',
+      data: [
+        {{ $bookingStatus['pending'] ?? 0 }},
+        {{ $bookingStatus['confirmed'] ?? 0 }},
+        {{ $bookingStatus['canceled'] ?? 0 }},
+        {{ $bookingStatus['complete'] ?? 0 }}
+      ],
+      backgroundColor: [
+        '#facc15', // yellow
+        '#4ade80', // green
+        '#f87171', // red
+        '#60a5fa', // blue
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: bookingData,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: false,
+        }
+      }
+    },
+  };
+
+  new Chart(document.getElementById('bookingChart'), config);
+</script>
+@endsection
+

@@ -121,7 +121,9 @@
     </form>
   </div>
 </div>
+@endsection
 
+@section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('image-inputs');
@@ -205,7 +207,5 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
-</script>
-
-
+</script>  
 @endsection

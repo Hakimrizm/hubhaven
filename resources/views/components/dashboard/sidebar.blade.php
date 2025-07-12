@@ -78,13 +78,6 @@
 
           <div class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon bi bi-clock-history"></i>
-              <p>Book History</p>
-            </a>
-          </div>
-
-          <div class="nav-item">
-            <a href="#" class="nav-link">
               <i class="nav-icon bi bi-chat-left-dots-fill"></i>
               <p>Review</p>
             </a>

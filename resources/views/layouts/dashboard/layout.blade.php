@@ -125,5 +125,6 @@
   </script>
   <!--end::OverlayScrollbars Configure-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @yield('scripts')
 </body>
 </html>
